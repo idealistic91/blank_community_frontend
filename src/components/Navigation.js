@@ -1,3 +1,4 @@
+import '../styles/Navigation.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import React from 'react';
@@ -5,6 +6,9 @@ import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import ProfileDropDown from './ProfileDropDown';
 import CommunityDropDown from './CommunityDropDown';
+import GoogleFontLoader from 'react-google-font-loader';
+import Logo from './Logo';
+
 
 
 import {
@@ -21,7 +25,6 @@ class Navigation extends React.Component {
     }
 
     handleLogout = () => {
-        console.log(this.props)
         this.props.logOut()
     }
 
@@ -33,33 +36,42 @@ class Navigation extends React.Component {
                             <span className="nav-link" onClick={this.handleLogout}>Logout</span>
                         </li>]
         return(
-            <div id='navigation'>
-                <Navbar bg="dark" expand="lg" variant='dark'>
-                    <Navbar.Brand href="#home">
-                        {this.props.viewLabel}
-                    </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <li className="nav-item">
-                            <Link to="/" className="nav-link">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/users" className="nav-link">Users</Link>
-                        </li>
-                        {!this.props.authenticated && <li className="nav-item">
-                            <Link to="/login" className="nav-link">Login</Link>
-                        </li>}
-                        <li className="nav-item">
-                            <Link to="/events" className="nav-link">Events</Link>
-                        </li>
-                    </Nav>
-                    <Nav className="ml-auto">
-                        {this.props.authenticated && loggedInLinks}
-                    </Nav>
-                    </Navbar.Collapse>
-                </Navbar>
-            </div>
+            <>
+             <GoogleFontLoader
+                    fonts={[
+                        {
+                        font: 'Press Start 2P',
+                        weights: [400, '400i'],
+                        },
+                    ]}
+            />
+            <Navbar bg="dark" expand="lg" variant='dark' id="nav">
+                <Navbar.Brand href="#home" id="logo">
+                    <Logo />
+                    {/* {this.props.viewLabel} */}
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                    <li className="nav-item">
+                        <Link to="/" className="nav-link">Home</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/users" className="nav-link">Users</Link>
+                    </li>
+                    {!this.props.authenticated && <li className="nav-item">
+                        <Link to="/login" className="nav-link">Login</Link>
+                    </li>}
+                    <li className="nav-item">
+                        <Link to="/events" className="nav-link">Events</Link>
+                    </li>
+                </Nav>
+                <Nav className="ml-auto">
+                    {this.props.authenticated && loggedInLinks}
+                </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        </>
         )
     }
 }

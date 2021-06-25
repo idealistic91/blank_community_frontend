@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import { connect } from "react-redux"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navigation';
@@ -28,10 +28,15 @@ import {
       }
       this.updateView = this.updateView.bind(this)
       this.updateUsername = this.updateUsername.bind(this)
+      this.setLoading = this.setLoading.bind(this)
     }
 
     updateView(val) {
       this.setState({viewLabel: val})
+    }
+    setLoading(onOff) {
+      console.log(onOff)
+      this.setState({isLoading: onOff})
     }
     updateUsername(val) {
       this.setState({username: val})
@@ -48,12 +53,16 @@ import {
 
     render() {
       return (
+        <>
         <Router >
             <div className="App">
             <header className="App-header">
-              <Navigation viewLabel={this.state.viewLabel}/>
+              <Navigation viewLabel={this.state.viewLabel} />
             </header>
-            <div id="content" className="container">
+            <div className="row">
+              <div className="col-lg-2 sidebar" id="left-sidebar"></div>
+              <div className="col-lg-8" id="content-wrapper">
+              <div id="content" className="container">
               <Switch>
                 <Route exact path="/login">
                   <Modal isOpen={!this.props.authenticated} screenWidth={this.state.screenWidth} title='Log in'>
@@ -77,9 +86,12 @@ import {
                 </Route>
               </Switch>
             </div>
+              </div>
+              <div className="col-lg-2 sidebar" id="right-sidebar"></div>
+            </div>
           </div>
       </Router>
-      
+      </>
       );
     }
   }

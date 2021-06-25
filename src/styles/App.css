@@ -11,3 +11,17 @@
 a {
   text-decoration: none;
 }
+
+.sidebar {
+  background-color: #2F3136;
+}
+
+#content-wrapper {
+  background-color: #36393F;
+  min-height: 100vh;
+  color: white;
+}
+
+
+
+

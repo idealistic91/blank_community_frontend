@@ -9,6 +9,7 @@ import {
     logIn,
     logOut,
   } from "../redux/Login/login.actions"
+import { setLoading } from '../redux/App/app.actions';
 import { changeCommunity } from '../redux/Community/community.actions';
 
 class Login extends React.Component {
@@ -40,14 +41,18 @@ class Login extends React.Component {
         this.setState({errors: [...this.state.errors, error]})
     }
     handleLogin(data) {
+        this.props.setLoading(true)
+        
         const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: data.nameInput, password: data.passwordInput})
         };
+
         fetch(`${Paths.baseUrl}${Paths.sessionsUrl}`, requestOptions)
         .then(response => response.json())
         .then((response) => {
+            this.props.setLoading(false)
             if(response.status === 'ok') {
                 this.props.logIn(data.nameInput, response.auth_token)
                 this.props.changeCommunity(response.community_id, response.community_name)
@@ -83,7 +88,7 @@ const mapDispatchToProps = dispatch => {
     return {
       
       logIn: (username, auth_token) => dispatch(logIn(username, auth_token)),
-
+      setLoading: (onOff) => dispatch(setLoading(onOff)),
       logOut: () => dispatch(logOut()),
       changeCommunity: (id, name) => dispatch(changeCommunity(id, name))
 

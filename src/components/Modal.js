@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BootstrapModal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Logo from './Logo'
 import { useMediaQuery } from 'react-responsive';
 
 
@@ -11,7 +12,6 @@ class Modal extends React.Component {
             isOpen: this.props.isOpen
         }
     }
-
     openModal = () => this.setState({ isOpen: true });
     closeModal = () => this.setState({ isOpen: false });
     
@@ -21,7 +21,7 @@ class Modal extends React.Component {
                 <>
                     <BootstrapModal show={this.state.isOpen} onHide={this.closeModal} variant='dark'>
                         <BootstrapModal.Header closeButton>
-                            <BootstrapModal.Title>{this.props.title}</BootstrapModal.Title>
+                            <BootstrapModal.Title><Logo ignoreModals={true}/>{this.props.title}</BootstrapModal.Title>
                         </BootstrapModal.Header>
                         <BootstrapModal.Body>
                             {this.props.children}

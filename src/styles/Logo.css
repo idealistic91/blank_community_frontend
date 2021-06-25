@@ -1,0 +1,67 @@
+#logo-wrapper {
+    display: flex;
+}
+
+#app-capital-d {
+    color: orange;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 30px;
+  }
+  
+  .logo-letter {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 25px;
+  }
+
+  .loading {
+    animation-name: color;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+
+  .logo-up {
+    margin-top: -10px;
+    animation-name: up;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+  .logo-down {
+    margin-top: -20px;
+    animation-name: down;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes up {
+    0% {
+      margin-top: 0px;
+    }
+    50% { margin-top: -20px; }
+    100% { margin-top: 0px; }
+  }
+  
+  @keyframes down {
+    0% {
+      margin-top: 0px;
+    }
+    50% { margin-top: 30px; }
+    100% { margin-top: 0px; }
+  }
+  
+  @keyframes color {
+    0% {
+      color: orange;
+    }
+    25% {
+      color: #b67600;
+    }
+    50% {
+      color: #9e5700;
+    }
+    70% {
+      color: #b67600;
+    }
+    100% {
+      color: orange;
+    }
+  }

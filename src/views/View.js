@@ -2,6 +2,10 @@ import React from 'react'
 import { connect } from "react-redux";
 import {Link} from 'react-router-dom';
 
+import {
+   setLoading
+  } from "../redux/App/app.actions"
+
 class View extends React.Component {
     constructor(props) {
         super(props)
@@ -16,6 +20,7 @@ class View extends React.Component {
     }
 
     fetchData = async (url, options = this.requestOptions) => {
+        this.props.setLoading(true)
         this.setState({
             isLoading: true
         })
@@ -23,6 +28,7 @@ class View extends React.Component {
             const response = await fetch(`${url}?access_token=${this.props.auth_token}`, options)
             if (response.ok) {
                 const data = await response.json();
+                this.props.setLoading(false)
                 this.setState({
                   data: data,
                   isLoading: false
@@ -65,4 +71,10 @@ const mapStateToProps = state => ({
     auth_token: state.login.auth_token
   });
 
-export default connect(mapStateToProps)(View);
+  const mapDispatchToProps = dispatch => {
+    return {
+        setLoading: (onOff) => dispatch(setLoading(onOff))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(View);
