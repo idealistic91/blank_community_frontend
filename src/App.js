@@ -9,6 +9,10 @@ import View from './views/View';
 import Users from './views/Users';
 import Events from './views/Events';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faCheckSquare, faCalendarDay, faClock } from '@fortawesome/free-solid-svg-icons';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,6 +21,7 @@ import {
   Redirect
 } from "react-router-dom";
 
+library.add(fab, faCheckSquare, faCalendarDay, faClock);
   class App extends React.Component {
     constructor(props) {
       super(props)
@@ -50,8 +55,13 @@ import {
     updateWindowDimensions(val) {
       this.setState({ screenWidth: val });
     }
+    
 
     render() {
+      View.defaultProps = {
+        updateView: this.updateView
+      }
+
       return (
         <>
         <Router >
@@ -59,10 +69,7 @@ import {
             <header className="App-header">
               <Navigation viewLabel={this.state.viewLabel} />
             </header>
-            <div className="row">
-              <div className="col-lg-2 sidebar" id="left-sidebar"></div>
-              <div className="col-lg-8" id="content-wrapper">
-              <div id="content" className="container">
+            <div id="content-wrapper">
               <Switch>
                 <Route exact path="/login">
                   <Modal isOpen={!this.props.authenticated} screenWidth={this.state.screenWidth} title='Log in'>
@@ -70,24 +77,22 @@ import {
                   </Modal>
                 </Route>
                 <Route exact path="/users">
-                  <View viewLabel='Users' updateView={this.updateView} key='users'>
+                  <View viewLabel='Users' key='users'>
                     <Users />
                   </View>
                 </Route>
                 <Route exact path="/events">
-                  <View viewLabel='Events' updateView={this.updateView} key='events'>
+                  <View viewLabel='Events' key='events'>
                     <Events currentCommunity={this.props.current_community}/>
                   </View>
                 </Route>
                 <Route path="/">
-                  <View viewLabel='Home' updateView={this.updateView} key='home' noAuth={true}>
+                  <View viewLabel='Home' key='home' noAuth={true}>
                     <h1>Home</h1>
                   </View>
                 </Route>
               </Switch>
-            </div>
-              </div>
-              <div className="col-lg-2 sidebar" id="right-sidebar"></div>
+              
             </div>
           </div>
       </Router>

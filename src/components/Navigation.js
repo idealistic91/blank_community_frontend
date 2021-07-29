@@ -48,7 +48,6 @@ class Navigation extends React.Component {
             <Navbar bg="dark" expand="lg" variant='dark' id="nav">
                 <Navbar.Brand href="#home" id="logo">
                     <Logo />
-                    {/* {this.props.viewLabel} */}
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

@@ -15,13 +15,13 @@ class Logo extends React.Component {
     }
 
     render() {
-        const klass = `logo-letter`
+        const klass = `logo-letter-${this.props.size}`
         if(this.props.loading && !this.anyModalOpen()) {
             return(<LoadingLogo />)
         } else {
             return(
                 <div id="logo-wrapper">
-                    <span id="app-capital-d">D</span>
+                    <span className={'capital-d-' + this.props.size}>D</span>
                     <span className={klass} key="e">e</span>
                     <span className={klass} key="v">v</span>
                     <span className={klass} key="2e">e</span>
@@ -31,6 +31,10 @@ class Logo extends React.Component {
             )
         }
     }
+}
+
+Logo.defaultProps = {
+    size: 'small'
 }
 
 const mapStateToProps = state => {

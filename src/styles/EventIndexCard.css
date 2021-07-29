@@ -1,0 +1,19 @@
+.event-item-card {
+    height: 300px;
+}
+
+.participant-avatars {
+    margin-right: -10px;
+}
+
+.event-item-footer {
+    background-color: orange;
+}
+
+.item-date > * {
+    margin-left: 5px;
+}
+
+.item-time > * {
+    margin-left: 5px;
+}

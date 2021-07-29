@@ -17,11 +17,31 @@ a {
 }
 
 #content-wrapper {
-  background-color: #36393F;
+  background-color: #2F3136;
   min-height: 100vh;
   color: white;
 }
 
+.card-header {
+  background-color: #1C2023 !important;
+}
 
+.card-header .nav {
+  background-color: #1C2023 !important;
+}
 
+.nav-pills .active {
+  border-radius: 0px !important;
+  background-color: orange !important;
+}
 
+#left-sidebar {
+  min-height: 100vh;
+  background-color: #1C2023;
+  padding: 0px;
+  border-radius: 0px !important;
+}
+
+.avatar-small {
+  height: 40px;
+}

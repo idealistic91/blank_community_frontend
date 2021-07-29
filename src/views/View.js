@@ -25,7 +25,8 @@ class View extends React.Component {
             isLoading: true
         })
         try {
-            const response = await fetch(`${url}?access_token=${this.props.auth_token}`, options)
+            const extendedUrl = `${url}${url.includes('?') ? '&' : '?'}access_token=${this.props.auth_token}`
+            const response = await fetch(extendedUrl, options)
             if (response.ok) {
                 const data = await response.json();
                 this.props.setLoading(false)
@@ -51,8 +52,8 @@ class View extends React.Component {
                 // Pass accessible high order functions and props to children
                 React.cloneElement(this.props.children, { auth_token: this.props.auth_token,
                     fetchData: this.fetchData,
-                    data: this.state.data, 
-                    isLoading: this.state.isLoading })
+                    data: this.state.data,
+                    loading: this.props.loading })
             )
         } else {
             return(
@@ -68,7 +69,8 @@ class View extends React.Component {
 const mapStateToProps = state => ({
     authenticated: state.login.authenticated,
     username: state.login.username,
-    auth_token: state.login.auth_token
+    auth_token: state.login.auth_token,
+    loading: state.app.loading
   });
 
   const mapDispatchToProps = dispatch => {

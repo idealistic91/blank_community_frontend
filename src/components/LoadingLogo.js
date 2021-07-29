@@ -17,7 +17,7 @@ class LoadingLogo extends React.Component {
 
 
     loadingAnimation = (klass) => {
-        let capitalD = document.getElementById('app-capital-d')
+        let capitalD = document.querySelector(`.capital-d-${this.props.size}`)
         capitalD.classList.add('loading')
         let letters = document.querySelectorAll(`.logo-letter-${klass}`)
         let i = 0;
@@ -38,10 +38,10 @@ class LoadingLogo extends React.Component {
     }
 
     render() {
-        const klass = `logo-letter logo-letter-${this.state.klass}`
+        const klass = `logo-letter-${this.props.size} logo-letter-${this.state.klass}`
         return(
             <div id="logo-wrapper">
-                <span id="app-capital-d">D</span>
+                <span className={'capital-d-' + this.props.size}>D</span>
                 <span className={klass} key="e">e</span>
                 <span className={klass} key="v">v</span>
                 <span className={klass} key="2e">e</span>
@@ -51,5 +51,10 @@ class LoadingLogo extends React.Component {
         )
     }
 }
+
+LoadingLogo.defaultProps = {
+    size: 'small'
+}
+
 
 export default LoadingLogo;

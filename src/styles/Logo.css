@@ -2,15 +2,24 @@
     display: flex;
 }
 
-#app-capital-d {
+.capital-d-small {
     color: orange;
     font-family: 'Press Start 2P', cursive;
     font-size: 30px;
   }
+  .capital-d-big {
+    color: orange;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 70px;
+  }
   
-  .logo-letter {
+  .logo-letter-small {
     font-family: 'Press Start 2P', cursive;
     font-size: 25px;
+  }
+  .logo-letter-big {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 50px;
   }
 
   .loading {
@@ -65,3 +74,7 @@
       color: orange;
     }
   }
+
+.logo-letter-big {
+  font-size: 50px;
+}
